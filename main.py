@@ -4,11 +4,8 @@
 from scipy.spatial.distance import cityblock
 import pandas as pd
 
-file = open("input.csv", "r")
-numOfClusters = file.readline()
-print(numOfClusters)
-
-data = pd.read_csv('input.csv', sep=";", header=None, skiprows=2, dtype=float)
+data = pd.read_csv('input.csv', sep=";", header=None, dtype=float)
 print (data)
-
-print(cityblock(data.iloc[0], data.iloc[1]))
+numofcluster=data.iloc[0,0]
+print(cityblock(data.iloc[2], data.iloc[3]))
+print(numofcluster)
