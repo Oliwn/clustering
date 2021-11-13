@@ -57,6 +57,9 @@ print(len(cendist2))
 print(len(cendist3))
 
 #checks which kpoint is closer to each data entry and saves the data in the kpoint list to which its closer to
+#here is an error in line 63, schau dir einfach die fehlermeldung an die ergibt kein sinn,
+#deshalb hab ich auch soviele prints um zu checken was los ist
+#tldr: sie sagen dass der index temp out of range ist bei ca wert 10 obwohl die liste bis 18 geht also auch der index
 for temp in range(len(cendist1)):
     print(temp)
     if cendist1[temp] < cendist2[temp] and cendist1[temp] < cendist3[temp]:
