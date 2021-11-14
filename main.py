@@ -51,9 +51,12 @@ for x in range(numofcluster):
     centroids.append([a,b])
 
 #creates a list with all calculated distances between each point and each kpoint
-
+cendist1=[]
+cendist2=[]
+cendist3=[]
 changed = True
 count = 0
+
 while (changed):
     cendist1=[]
     cendist2=[]
@@ -92,6 +95,24 @@ while (changed):
     count += 1
 
 print(count)
+
+file = open("output.csv", "w")
+file.write(str(numofcluster) + "\n")
+
+for cent in centroids:
+    file.write(str(cent[0]) + ";" + str(cent[1]) + "\n")
+
+file.write(str(count) + "\n")
+file.write(str(data.iloc[1,0]) + ";" + str(data.iloc[1,1]) + "\n")
+
+for x in cendist1:
+    file.write("0;" + str(df.iloc[x[1],0]) + ";" + str(df.iloc[x[1],1]) + "\n")
+
+for x in cendist2:
+    file.write("1;" + str(df.iloc[x[1],0]) + ";" + str(df.iloc[x[1],1]) + "\n")
+
+for x in cendist3:
+    file.write("2;" + str(df.iloc[x[1],0]) + ";" + str(df.iloc[x[1],1]) + "\n")
 
 
 #for points in range(len(df)):
