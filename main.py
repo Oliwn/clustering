@@ -51,13 +51,16 @@ for x in range(numofcluster):
     centroids.append([a,b])
 
 #creates a list with all calculated distances between each point and each kpoint
-cendist1=[]
-cendist2=[]
-cendist3=[]
+#cendist1=[]
+#cendist2=[]
+#cendist3=[]
 
 changed = True
-
+count = 0
 while (changed):
+    cendist1=[]
+    cendist2=[]
+    cendist3=[]
     for x in range(len(df)):
         distances=[]
         distances.append(cityblock(centroids[0], df.iloc[x]))
@@ -75,14 +78,21 @@ while (changed):
         else:
             cendist3.append([min, x])
 
+    print("cendist1")
+    print(cendist1)
+    print("cendist2")
+    print(cendist2)
+    print("cendist3")
+    print(cendist3)
+
     print("centroids old")
     print(centroids)
-    newCentroids = []
+    newCentroids=[]
     newCentroids.append(getCentroidCoordinates(cendist1, df))
     newCentroids.append(getCentroidCoordinates(cendist2, df))
     newCentroids.append(getCentroidCoordinates(cendist3, df))
 
-    if (centroidsChanged(centroids, newCentroids)):
+    if centroidsChanged(centroids, newCentroids):
         changed = True
         centroids = newCentroids
     else:
@@ -90,6 +100,10 @@ while (changed):
 
     print("centroids new")
     print(centroids)
+    count += 1
+
+print(count)
+
 
 #for points in range(len(df)):
 
