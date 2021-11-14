@@ -30,14 +30,14 @@ def centroidsChanged(centroids, newCentroids):
             return True
     return False
 
-data = pd.read_csv('input.csv', sep=";", header=None, dtype=float)
+data = pd.read_csv('input.csv', decimal=",", sep=";", header=None, dtype=float)
 
 numofcluster=int(data.iloc[0,0])
 
 
 
 #looks for min/max of the input file in order to get the boundaries for the random kpoints
-df=pd.read_csv('input.csv', sep=";", skiprows=2, header=None, dtype=float) #same function as inline 9 without the first 2 rows
+df=pd.read_csv('input.csv', decimal=",", sep=";", skiprows=2, header=None, dtype=float) #same function as inline 9 without the first 2 rows
 
 minval=df.min()
 maxval=df.max()
@@ -51,9 +51,6 @@ for x in range(numofcluster):
     centroids.append([a,b])
 
 #creates a list with all calculated distances between each point and each kpoint
-#cendist1=[]
-#cendist2=[]
-#cendist3=[]
 
 changed = True
 count = 0
@@ -67,8 +64,6 @@ while (changed):
         distances.append(cityblock(centroids[1], df.iloc[x]))
         distances.append(cityblock(centroids[2], df.iloc[x]))
 
-        #print()
-        #print(distances)
 
         min = getMin(distances)
         if (distances.index(min) == 0):
@@ -78,15 +73,9 @@ while (changed):
         else:
             cendist3.append([min, x])
 
-    print("cendist1")
-    print(cendist1)
-    print("cendist2")
-    print(cendist2)
-    print("cendist3")
-    print(cendist3)
-
     print("centroids old")
     print(centroids)
+
     newCentroids=[]
     newCentroids.append(getCentroidCoordinates(cendist1, df))
     newCentroids.append(getCentroidCoordinates(cendist2, df))
